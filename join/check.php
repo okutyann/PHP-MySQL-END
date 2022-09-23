@@ -1,3 +1,7 @@
+<?php
+session_start();
+var_dump($_SESSION['form']);
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -30,7 +34,7 @@
 					</dd>
 					<dt>写真など</dt>
 					<dd>
-							<img src="../member_picture/" width="100" alt="" />
+						<img src="../member_picture/" width="100" alt="" />
 					</dd>
 				</dl>
 				<div><a href="index.php?action=rewrite">&laquo;&nbsp;書き直す</a> | <input type="submit" value="登録する" /></div>

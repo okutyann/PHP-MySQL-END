@@ -1,4 +1,5 @@
 <?php
+session_start();
 $form = [
     'name' => '',
     'email' => '',
@@ -31,10 +32,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($image['name'] !== '' && $image['error'] === 0) {
         // mime_content_type なんのタイプのコンテンツか確認ができる
         $type = mime_content_type($image['tmp_name']);
-        var_dump($type);
+        // var_dump($type);
         if ($type !== 'image/png' && $type !== 'image/jpeg') {
             $error['image'] = 'type';
         }
+    }
+    if (empty($error)) {
+        $_SESSION['form'] = $form;
+        header('Location: check.php');
+        exit();
     }
 }
 
