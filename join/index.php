@@ -1,16 +1,13 @@
 <?php
 session_start();
+require('../library.php');
 $form = [
     'name' => '',
     'email' => '',
     'password' => ''
 ];
 $error = [];
-// htmlspecialcharsを短くする
-function h($value)
-{
-    return htmlspecialchars($value, ENT_QUOTES);
-}
+
 // フォームの内容をチェック（登録ボタンを押したときに入力していなかったら）
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $form['name'] = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
