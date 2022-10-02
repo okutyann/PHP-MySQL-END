@@ -1,3 +1,15 @@
+<?php
+session_start();
+require('library.php');
+if (isset($_SESSION['id']) && $_SESSION['name']) {
+    $name = $_SESSION['name'];
+} else {
+    header('Location: login.php');
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -20,7 +32,7 @@
             <!-- //action=""だと同じ画面が表示される（同画面でエラーメッセージをしたいため） -->
             <form action="" method="post">
                 <dl>
-                    <dt>○○さん、メッセージをどうぞ</dt>
+                    <dt><?php echo h($name); ?>さん、メッセージをどうぞ</dt>
                     <dd>
                         <textarea name="message" cols="50" rows="5"></textarea>
                     </dd>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('library.php');
 $error = [];
 $email = '';
@@ -26,6 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // var_dump($hash);
         if (password_verify($password, $hash)) {
             //ログイン成功
+            //セッションIDを再生成する（使い回しは危険のため）
+            session_regenerate_id();
+            $_SESSION['id'] = $id;
+            $_SESSION['name'] = $name;
+            header('Location: index.php');
+            exit();
         } else {
             $error['login'] = 'failed';
         }
